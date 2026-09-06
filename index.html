@@ -6,24 +6,28 @@
     <title>موقع كنز السلف - الموسوعة الإسلامية الموثقة</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; margin: 0; padding: 0; }
-        header { background-color: #1e3d2f; color: white; text-align: center; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { margin: 0; font-size: 24px; }
-        p.subtitle { margin: 5px 0 0 0; font-size: 14px; color: #a3c2b2; }
-        nav { display: flex; justify-content: center; background-color: #2c5e43; padding: 10px; overflow-x: auto; }
-        nav a { color: white; text-decoration: none; padding: 8px 15px; margin: 0 5px; font-size: 14px; white-space: nowrap; border-radius: 4px; }
+        header { background-color: #1e3d2f; color: white; text-align: center; padding: 35px 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
+        p.subtitle { margin: 10px 0 0 0; font-size: 15px; color: #a3c2b2; font-weight: 500; }
+        nav { display: flex; justify-content: center; background-color: #2c5e43; padding: 12px; overflow-x: auto; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 5px; font-size: 15px; font-weight: bold; white-space: nowrap; border-radius: 4px; transition: 0.3s; }
         nav a:hover { background-color: #1e3d2f; }
-        .container { max-width: 600px; margin: 20px auto; padding: 10px; }
-        .card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid #27ae60; }
-        .badge { display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: bold; border-radius: 4px; color: white; background-color: #27ae60; margin-bottom: 10px; }
-        .text-content { font-size: 16px; line-height: 1.6; margin-bottom: 10px; font-weight: 500; }
-        .source { font-size: 13px; color: #666; font-style: italic; background: #f9f9f9; padding: 5px; border-radius: 4px; }
+        .container { max-width: 600px; margin: 30px auto; padding: 15px; }
+        .welcome-card { background: white; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-top: 4px solid #1e3d2f; text-align: center; }
+        .welcome-card h2 { color: #1e3d2f; margin-top: 0; font-size: 22px; }
+        .welcome-card p { font-size: 16px; line-height: 1.8; color: #555; }
+        .features { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
+        .feature-box { background: #fff; padding: 15px; border-radius: 8px; border-right: 4px solid #2c5e43; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .feature-box h3 { margin: 0 0 5px 0; font-size: 16px; color: #1e3d2f; }
+        .feature-box p { margin: 0; font-size: 14px; color: #666; line-height: 1.5; }
+        footer { text-align: center; padding: 20px; font-size: 13px; color: #888; margin-top: 4px; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>موقع كنز السلف</h1>
-        <p class="subtitle">قرآن وتفسير • أحاديث • مواعظ • قصائد وأشعار صحابة وتابعين</p>
+        <p class="subtitle">الموسوعة الإسلامية والأدبية الموثقة</p>
     </header>
 
     <nav>
@@ -35,20 +39,37 @@
     </nav>
 
     <div class="container">
-        <!-- الحديث الأول في صحيح البخاري -->
-        <div class="card">
-            <span class="badge">🟢 ثابت / صحيح</span>
-            <div class="text-content" style="color: #1e3d2f; font-size: 18px; text-align: center; margin: 15px 0; font-weight: bold;">
-                "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا، أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَمِهْجَرُهُ إِلَى مَا هَاجَرَ إِلَيْهِ."
+        
+        <!-- بطاقة الترحيب الرئيسية -->
+        <div class="welcome-card">
+            <h2>مرحباً بكم في كنز السلف ✨</h2>
+            <p>مكتبة رقمية منسقة تُعنى بجمع ونشر متون العلم النافع من آيات وتفاسير وأحاديث نبوية ومواعظ مأثورة وقصائد صدر الإسلام، مع تحري الأمانة العلمية والدقة في بيان درجة صحة النصوص وأصل ثبوتها.</p>
+        </div>
+
+        <!-- دليل تصفح الأقسام المبسط -->
+        <div class="features">
+            <div class="feature-box">
+                <h3>📖 القرآن والتفسير</h3>
+                <p>تصفح الآيات العظيمة مع شروحها وتفاسيرها المستمدة من أمهات الكتب المعتمدة.</p>
             </div>
-            <div class="source" style="line-height: 1.8;">
-                • <b>الراوي:</b> عمر بن الخطاب رضي الله عنه.<br>
-                • <b>المحدث:</b> الإمام البخاري (الحديث رقم 1 in صحيحه).<br>
-                • <b>المفسر والشارح:</b> الحافظ ابن حجر العسقلاني (في فتح الباري).<br>
-                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
-                • <b>الشرح والبيان:</b> يبيّن النبي ﷺ في هذا الحديث الشريف الميزان الباطن للأعمال؛ فقبول الأعمال الصالحة والثواب عليها مشروط بوجود النية الخالصة لله تعالى.
+            <div class="feature-box">
+                <h3>🟢 السنة النبوية والحديث</h3>
+                <p>أحاديث مشروحة ومحققة سنداً ومتناً لتمييز الثابت والصحيح مما فيه مقال.</p>
+            </div>
+            <div class="feature-box">
+                <h3>📜 مواعظ السلف وررائعه</h3>
+                <p>حكم بليغة ورسائل مؤثرة منقولة وموثقة عن الصحابة والتابعين والعلماء.</p>
+            </div>
+            <div class="feature-box">
+                <h3>✒️ ديوان الشعر والقصائد</h3>
+                <p>أجمل أبيات الشعر الفصيح وقصائد الزهد والمدح الثابتة تاريخياً.</p>
             </div>
         </div>
+
+        <footer>
+            جميع الحقوق محفوظة لموقع كنز السلف © ٢٠٢٦
+        </footer>
+
     </div>
 
 </body>
