@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع كنز السلف - الموسوعة الإسلامية الموثقة</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; margin: 0; padding: 0; }
+        header { background-color: #1e3d2f; color: white; text-align: center; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { margin: 0; font-size: 24px; }
+        p.subtitle { margin: 5px 0 0 0; font-size: 14px; color: #a3c2b2; }
+        nav { display: flex; justify-content: center; background-color: #2c5e43; padding: 10px; overflow-x: auto; }
+        nav a { color: white; text-decoration: none; padding: 8px 15px; margin: 0 5px; font-size: 14px; white-space: nowrap; border-radius: 4px; }
+        nav a:hover { background-color: #1e3d2f; }
+        .container { max-width: 600px; margin: 20px auto; padding: 10px; }
+        .card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid #ccc; }
+        .badge { display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: bold; border-radius: 4px; color: white; margin-bottom: 10px; }
+        .sahih { border-right-color: #27ae60; }
+        .sahih .badge { background-color: #27ae60; }
+        .daif { border-right-color: #f1c40f; }
+        .daif .badge { background-color: #f1c40f; color: #333; }
+        .lam-yathbut { border-right-color: #e74c3c; }
+        .lam-yathbut .badge { background-color: #e74c3c; }
+        .text-content { font-size: 16px; line-height: 1.6; margin-bottom: 10px; font-weight: 500; }
+        .source { font-size: 13px; color: #666; font-style: italic; background: #f9f9f9; padding: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>موقع كنز السلف</h1>
+        <p class="subtitle">قرآن وتفسير • أحاديث • مواعظ • قصائد وأشعار صحابة وتابعين</p>
+    </header>
+
+    <nav>
+        <a href="#">الرئيسية</a>
+        <a href="#">التفسير</a>
+        <a href="#">الحديث الشريف</a>
+        <a href="#">المواعظ</a>
+        <a href="#">الشعر والقصائد</a>
+    </nav>
+
+    <div class="container">
+        <!-- نموذج حديث صحيح -->
+        <div class="card sahih">
+            <span class="badge">🟢 ثابت / صحيح</span>
+            <div class="text-content">"إنَّما الأعْمالُ بالنِّيَّاتِ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى..."</div>
+            <div class="source">المصدر: رواه البخاري ومسلم عن عمر بن الخطاب رضي الله عنه.</div>
+        </div>
+
+        <!-- نموذج موعظة أو أثر لم يثبت -->
+        <div class="card lam-yathbut">
+            <span class="badge">🔴 لم يثبت / مكذوب</span>
+            <div class="text-content">"اطلبوا العلم ولو في الصين."</div>
+            <div class="source">التحقيق: حديث موضوع (باطل) لا يصح عن النبي صلى الله عليه وسلم.</div>
+        </div>
+    </div>
+
+</body>
+</html>
