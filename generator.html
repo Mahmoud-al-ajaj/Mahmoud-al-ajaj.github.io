@@ -5,83 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مولد بطاقات كنز السلف</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; padding: 20px; direction: rtl; }
-        .box { background: white; padding: 20px; max-width: 500px; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-top: 4px solid #1e3d2f; }
-        h2 { color: #1e3d2f; text-align: center; margin-top: 0; font-size: 20px; }
-        label { display: block; margin: 12px 0 5px; font-weight: bold; font-size: 14px; }
-        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 15px; background: #fff; }
-        button { width: 100%; padding: 12px; background: #1e3d2f; color: white; border: none; border-radius: 4px; font-weight: bold; margin-top: 18px; cursor: pointer; font-size: 16px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; padding: 20px; direction: rtl; }
+        .box { background: white; padding: 20px; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        h2 { color: #1e3d2f; text-align: center; margin-top: 0; }
+        label { display: block; margin: 12px 0 5px; font-weight: bold; color: #333; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
+        button { width: 100%; padding: 12px; background: #1e3d2f; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 15px; }
         button:hover { background: #2c5e43; }
-        textarea.result { background: #f0f0f0; font-family: monospace; font-size: 12px; height: 120px; margin-top: 15px; direction: ltr; text-align: left; color: #333; }
+        textarea.result { background: #f0f0f0; font-family: monospace; font-size: 13px; margin-top: 10px; }
         .hint { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
     </style>
 </head>
 <body>
 
-    <div class="box">
-        <h2>🛠️ صانع كود البطاقات لـ كنز السلف</h2>
-        <p style="text-align:center; font-size:13px; color:#666; margin:0 0 15px 0;">اكتب النص بيدك هنا ليصنع لك الكود تلقائياً</p>
-        
-        <label>نوع التوثيق والبطاقة الإشارية:</label>
-        <select id="type">
-            <option value="sahih">🟢 ثابت / صحيح</option>
-            <option value="daif">🟡 ضعيف / فيه مقال</option>
-            <option value="lam-yathbut">🔴 لم يثبت / مكذوب</option>
-        </select>
+<div class="box">
+    <h2>🛠️ صانع كود البطاقات لـ كنز السلف</h2>
+    <p style="text-align:center; font-size:13px; color:#666; margin-bottom:20px;">اكتب النص بيدك هنا ليصنع لك الكود تلقائياً</p>
 
-        <label>نص الآية، الحديث أو الموعظة (بالتشكيل):</label>
-        <textarea id="text" rows="4" placeholder="أدخل النص هنا بالهمزات الصحيحة..."></textarea>
+    <!-- القائمة العلوية الشاملة المدمج بها نوع التوثيق ونوع المحتوى وخيار اليدوي -->
+    <label>نوع التوثيق والبطاقة الإشارية:</label>
+    <select id="type" onchange="checkCustomSelection()">
+        <optgroup label="🟢 ثابت / صحيح">
+            <option value="sahih-ayah" selected>🟢 ثابت / صحيح - 📖 آية قرآنية</option>
+            <option value="sahih-hadith">🟢 ثابت / صحيح - 💬 حديث شريف</option>
+            <option value="sahih-mawiza">🟢 ثابت / صحيح - 📜 موعظة أو أثر سلفي</option>
+            <option value="sahih-maqal">🟢 ثابت / صحيح - 📰 مقال (اسم المقال)</option>
+            <option value="sahih-sher">🟢 ثابت / صحيح - ✍️ بيت شعر أو قصيدة</option>
+        </optgroup>
+        <optgroup label="🟡 ضعيف / فيه مقال">
+            <option value="daif-hadith">🟡 ضعيف / فيه مقال - 💬 حديث</option>
+            <option value="daif-mawiza">🟡 ضعيف / فيه مقال - 📜 أثر أو موعظة</option>
+        </optgroup>
+        <optgroup label="🔴 لم يثبت / مكذوب">
+            <option value="lam-hadith">🔴 لم يثبت / مكذوب - 💬 حديث</option>
+        </optgroup>
+        <optgroup label="✏️ خيارات الكتابة اليدوية">
+            <option value="custom-sahih">🟢 ثابت / صحيح - (أكتب التصنيف بيدي) ✏️</option>
+            <option value="custom-daif">🟡 ضعيف / فيه مقال - (أكتب التصنيف بيدي) ✏️</option>
+            <option value="custom-lam">🔴 لم يثبت / مكذوب - (أكتب التصنيف بيدي) ✏️</option>
+        </optgroup>
+    </select>
 
-        <label>الراوي أو القائل أو المفسر:</label>
-        <input type="text" id="author" placeholder="مثال: عمر بن الخطاب رضي الله عنه">
-
-        <label>المصدر أو المخرج العلمي أو ديوان الشعر:</label>
-        <input type="text" id="source" placeholder="مثال: صحيح البخاري / ديوان حسان">
-
-        <label>الشرح والبيان والتحليل التربوي:</label>
-        <textarea id="explain" rows="3" placeholder="اكتب الشرح المبسط والواضح هنا ليفهمه الزوار..."></textarea>
-
-        <button onclick="generateCode()">صناعة الكود الجاهز</button>
-
-        <label style="margin-top:20px; color:#c0392b;">👇 اضغط داخل المربع بالأسفل وانسخ الكود الناتج:</label>
-        <textarea id="output" class="result" readonly placeholder="سيظهر الكود البرمجي هنا بعد ضغط الزر الكود بالـخيار..."></textarea>
-        <p class="hint">ملاحظة: هذا الكود تأخذه وتلصقه في أسفل قسم الأحاديث أو المواعظ مباشرة فوق زر العودة.</p>
+    <!-- حقل الكتابة اليدوية الإضافي (يظهر تلقائياً لو اخترت كتابة التصنيف بيدك من القائمة فوق) -->
+    <div id="custom-input-group" style="display: none;">
+        <label style="color: #c0392b;">اكتب التصنيف أو اسم المقال/الزيادة بيدك هنا:</label>
+        <input type="text" id="custom-text-input" placeholder="مثال: خطبة جمعة، مقطع من كتاب، اسم المقال الحالي...">
     </div>
 
-    <script>
-        function generateCode() {
-            var type = document.getElementById('type').value;
-            var text = document.getElementById('text').value;
-            var author = document.getElementById('author').value;
-            var source = document.getElementById('source').value;
-            var explain = document.getElementById('explain').value;
-            
-            if(!text || !author || !source) {
-                alert("يرجى ملء الخانات الأساسية أولاً لتوليد الكود بشكل صحيح.");
-                return;
-            }
+    <!-- بقية الحقول الأصلية للموقع دون أي تغيير برمي أو بصري -->
+    <label>نص الآية، الحديث أو الموعظة (بالتشكيل):</label>
+    <textarea id="text" rows="4" placeholder="أدخل النص هنا بالهمزات الصحيحة..."></textarea>
 
-            var badgeText = "🟢 ثَابِتٌ / صَحِيحٌ";
-            var borderColor = "#27ae60";
-            if(type == "daif") { badgeText = "🟡 ضَعِيفٌ / فِيهِ مَقَالٌ"; borderColor = "#f1c40f"; }
-            if(type == "lam-yathbut") { badgeText = "🔴 لَمْ يَثْبُتْ / مَكْذُوبٌ"; borderColor = "#e74c3c"; }
+    <label>الراوي أو القائل أو المفسر:</label>
+    <input type="text" id="author" placeholder="مثال: عمر بن الخطاب رضي الله عنه">
 
-            var code = `        <!-- بطاقة جديدة مضافة بواسطة المولد -->\n` +
-                       `        <div class="card ${type}" style="margin-top: 20px; border-right: 5px solid ${borderColor}; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: right; direction: rtl;">\n` +
-                       `            <span class="badge" style="display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: bold; border-radius: 4px; color: ${type=='daif'?'#333':'white'}; background-color: ${borderColor}; margin-bottom: 10px;">${badgeText}</span>\n` +
-                       `            <div class="text-content" style="color: #1e3d2f; font-size: 18px; text-align: center; margin: 15px 0; font-weight: bold; line-height: 1.6;">"${text}"</div>\n` +
-                       `            <div class="source" style="font-size: 13px; color: #555; background: #f9f9f9; padding: 10px; border-radius: 4px; line-height: 1.8;">\n` +
-                       `                • <b>القائل/الراوي:</b> ${author}.<br>\n` +
-                       `                • <b>المصدر:</b> ${source}.<br>\n` +
-                       `                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">\n` +
-                       `                • <b>الشرح والبيان:</b> ${explain}\n` +
-                       `            </div>\n` +
-                       `        </div>\n`;
-            
-            document.getElementById('output').value = code;
-            alert("تم توليد الكود بنجاح! اضغط داخل المربع الرمادي في الأسفل وانسخه بالكامل.");
-        }
-    </script>
+    <label>المصدر أو المخرج العلمي أو ديوان الشعر:</label>
+    <input type="text" id="source" placeholder="مثال: صحيح البخاري / ديوان حسان">
+
+    <label>الشرح والبيان والتحليل التربوي:</label>
+    <textarea id="explain" rows="3" placeholder="اكتب الشرح المبسط والواضح هنا ليفهمه الزوار..."></textarea>
+
+    <button onclick="generateCode()">صناعة الكود الجاهز</button>
+
+    <label style="margin-top:20px; color:#c0392b;">👇 اضغط داخل المربع بالأسفل وانسخ الكود الناتج:</label>
+    <textarea id="output" class="result" readonly placeholder="سيظهر الكود البرمجي هنا بعد ضغط الزر الكود... بالخيار"></textarea>
+    <p class="hint">ملاحظة: هذا الكود تأخذه وتلصقه في أسفل قسم الأحاديث أو المواعظ مباشرة فوق زر العودة.</p>
+</div>
+
+<script>
+// دالة مراقبة الاختيار لإظهار حقل الكتابة اليدوية عند الحاجة
+function checkCustomSelection() {
+    const typeSelect = document.getElementById('type').value;
+    const customGroup = document.getElementById('custom-input-group');
+    
+    // إذا كان الاختيار يحتوي على مقال أو يبدأ بـ custom يظهر حقل الكتابة اليدوية
+    if (typeSelect.startsWith('custom') || typeSelect === 'sahih-maqal') {
+        customGroup.style.display = 'block';
+    } else {
+        customGroup.style.display = 'none';
+    }
+}
+
+// دالة توليد الأكواد الجاهزة (تطبخ البيانات وتخرج الكود في المربع الأسفل)
+function generateCode() {
+    const typeValue = document.getElementById('type').value;
+    const text = document.getElementById('text').value.trim();
+    const author = document.getElementById('author').value.trim();
+    const source = document.getElementById('source').value.trim();
+    const explain = document.getElementById('explain').value.trim();
+    const customText = document.getElementById('custom-text-input').value.trim();
+
+    // تحديد النص الوصفي للبطاقة بناءً على الاختيار
+    let classification = "";
+    let statusColor = "🟢";
+
+    if (typeValue === 'sahih-ayah') { classification = "آية قرآنية (ثابت / صحيح)"; }
+    else if (typeValue === 'sahih-hadith') { classification = "حديث شريف (ثابت / صحيح)"; }
+    else if (typeValue === 'sahih-mawiza') { classification = "موعظة أو أثر سلفي (ثابت / صحيح)"; }
+    else if (typeValue === 'sahih-maqal') { classification = `مقال: ${customText || 'بدون عنوان'}`; }
+    else if (typeValue === 'sahih-sher') { classification = "شعر أو قصيدة (ثابت / صحيح)"; }
+    else if (typeValue === 'daif-hadith') { classification = "حديث (ضعيف / فيه مقال)"; statusColor = "🟡"; }
+    else if (typeValue === 'daif-mawiza') { classification = "أثر أو موعظة (ضعيف / فيه مقال)"; statusColor = "🟡"; }
+    else if (typeValue === 'lam-hadith') { classification = "حديث (لم يثبت / مكذوب)"; statusColor = "🔴"; }
+    else if (typeValue === 'custom-sahih') { classification = `${customText || 'محتوى مخصص'} (ثابت / صحيح)`; }
+    else if (typeValue === 'custom-daif') { classification = `${customText || 'محتوى مخصص'} (ضعيف / فيه مقال)`; statusColor = "🟡"; }
+    else if (typeValue === 'custom-lam') { classification = `${customText || 'محتوى مخصص'} (لم يثبت / مكذوب)`; statusColor = "🔴"; }
+
+    // هنا يتم طبخ وتوليد قالب كود الـ HTML النهائي الذي ينسخه المستخدم
+    const finalHTMLResult = `<!-- بداية بطاقة كنز السلف -->
+<div class="salaf-card" style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px; font-family: sans-serif; direction: rtl; text-align: right;">
+    <div style="font-weight: bold; margin-bottom: 8px;">${statusColor} التصنيف: ${classification}</div>
+    <blockquote style="font-size: 16px; color: #1e3d2f; margin: 10px 0; font-weight: 500;">"${text}"</blockquote>
+    <div style="font-size: 14px; color: #555;"><b>القائل/الراوي:</b> ${author}</div>
+    <div style="font-size: 14px; color: #555;"><b>المصدر:</b> ${source}</div>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+    <div style="font-size: 14px; color: #666; font-style: italic;"><b>الشرح التربوي:</b> ${explain}</div>
+</div>
+<!-- نهاية بطاقة كنز السلف -->`;
+
+    // ضخ الكود المطبوخ داخل مربع النص الأسفل ليقوم المستخدم بنسخه
+    document.getElementById('output').value = finalHTMLResult;
+}
+</script>
+
 </body>
-  </html>
-          
+</html>
+
