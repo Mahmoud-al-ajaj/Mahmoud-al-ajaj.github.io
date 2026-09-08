@@ -4,101 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>موقع كنز السلف - الموسوعة الإسلامية الموثقة</title>
-    
-    <!-- أيقونة وشعار الموقع لمحركات البحث -->
     <link rel="icon" type="image/x-icon" href="https://github.com">
     <link rel="apple-touch-icon" href="https://github.com">
-
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; margin: 0; padding: 0; }
         header { background-color: #1e3d2f; color: white; text-align: center; padding: 35px 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
         p.subtitle { margin: 10px 0 0 0; font-size: 15px; color: #a3c2b2; font-weight: 500; }
-        
-        /* شريط الأزرار الفخم القابل للسحب باللمس يميناً ويساراً */
-        nav { 
-            display: flex; 
-            justify-content: flex-start; 
-            flex-direction: row; 
-            background-color: #2c5e43; 
-            padding: 12px; 
-            overflow-x: auto; 
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch; 
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
+        nav { display: flex; justify-content: flex-start; flex-direction: row; background-color: #2c5e43; padding: 12px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
         nav::-webkit-scrollbar { display: none; } 
-        
-        nav a { 
-            color: white; 
-            text-decoration: none; 
-            padding: 10px 20px; 
-            margin: 0 5px; 
-            font-size: 15px; 
-            font-weight: bold; 
-            white-space: nowrap; 
-            border-radius: 4px; 
-            transition: 0.3s; 
-        }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 5px; font-size: 15px; font-weight: bold; white-space: nowrap; border-radius: 4px; transition: 0.3s; }
         nav a:hover { background-color: #1e3d2f; }
-        
         .container { max-width: 600px; margin: 30px auto; padding: 15px; }
         .welcome-card { background: white; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-top: 4px solid #1e3d2f; text-align: center; }
         .welcome-card h2 { color: #1e3d2f; margin-top: 0; font-size: 22px; }
         .welcome-card p { font-size: 16px; line-height: 1.8; color: #555; }
-        
-        /* تنسيق الأقسام المدمجة بداخل الواجهة */
-        .section-title { font-size: 19px; color: #1e3d2f; font-weight: bold; margin: 30px 0 15px 0; border-bottom: 2px solid #2c5e43; padding-bottom: 5px; text-align: right; }
-        .card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid #27ae60; text-align: right; direction: rtl; }
-        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; color: white; background-color: #27ae60; margin-bottom: 10px; }
-        .duaa-content { font-size: 19px; line-height: 1.8; text-align: center; color: #1e3d2f; font-weight: bold; margin: 12px 0; }
-        .source { font-size: 13px; color: #555; background: #f9f9f9; padding: 8px; border-radius: 4px; line-height: 1.6; }
-        
-        footer { text-align: center; padding: 20px; font-size: 13px; color: #888; margin-top: 20px; }
+        footer { text-align: center; padding: 20px; font-size: 13px; color: #888; margin-top: 4px; }
     </style>
 </head>
 <body>
-
     <header>
         <h1>موقع كنز السلف</h1>
         <p class="subtitle">الموسوعة الإسلامية والأدبية الموثقة</p>
     </header>
-
     <nav>
         <a href="index.html">الرئيسية</a>
         <a href="tafsir.html">القرآن الكريم</a>
         <a href="hadith.html">الحديث الشريف</a>
         <a href="mowaed.html">المواعظ</a>
         <a href="poetry.html">الشعر والقصائد</a>
+        <a href="duaa.html">الدعاء المأثور</a>
     </nav>
-
     <div class="container">
-        
-        <!-- بطاقة الترحيب الرئيسية -->
         <div class="welcome-card">
             <h2>مرحباً بكم في كنز السلف ✨</h2>
             <p>مكتبة رقمية منسقة تُعنى بجمع ونشر متون العلم النافع من آيات وتفاسير وأحاديث نبوية ومواعظ مأثورة وقصائد صدر الإسلام، مع تحري الأمانة العلمية والدقة الكاملة في بيان درجة صحة النصوص وأصل ثبوتها.</p>
         </div>
-
-        <!-- قسم الدعاء الجامع المدمج بالواجهة مباشرة لضمان العمل -->
-        <div class="section-title">🕌 من الأدعية النبوية المأثورة المعتمدة</div>
-
-        <div class="card">
-            <span class="badge">🟢 ثَابِتٌ / صَحِيحٌ</span>
-            <div class="duaa-content">"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ."</div>
-            <div class="source">
-                • <b>الراوي:</b> أنس بن مالك رضي الله عنه.<br>
-                • <b>المصدر والمخرج:</b> صحيح البخاري (الحديث رقم ٢٨٩٣).<br>
-                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
-                • <b>الشرح والبيان:</b> كان النبي ﷺ يكثر من هذه الاستعاذة العظيمة؛ لما فيها من تحصين وتخليص للنفس من مقعدات الهم والغم، والعجز والكسل عن الطاعات، وضيق الديون وقهر الرجال.
-            </div>
-        </div>
-
-        <footer>
-            جميع الحقوق محفوظة لموقع كنز السلف © ٢٠٢٦
-        </footer>
-
+        <footer>جميع الحقوق محفوظة لموقع كنز السلف © ٢٠٢٦</footer>
     </div>
-
 </body>
 </html>
