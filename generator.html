@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد بطاقات كنز السلف</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; padding: 20px; direction: rtl; }
+        .box { background: white; padding: 20px; max-width: 500px; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-top: 4px solid #1e3d2f; }
+        h2 { color: #1e3d2f; text-align: center; margin-top: 0; font-size: 20px; }
+        label { display: block; margin: 12px 0 5px; font-weight: bold; font-size: 14px; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 15px; background: #fff; }
+        button { width: 100%; padding: 12px; background: #1e3d2f; color: white; border: none; border-radius: 4px; font-weight: bold; margin-top: 18px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2c5e43; }
+        textarea.result { background: #f0f0f0; font-family: monospace; font-size: 12px; height: 120px; margin-top: 15px; direction: ltr; text-align: left; color: #333; }
+        .hint { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>🛠️ صانع كود البطاقات لـ كنز السلف</h2>
+        <p style="text-align:center; font-size:13px; color:#666; margin:0 0 15px 0;">اكتب النص بيدك هنا ليصنع لك الكود تلقائياً</p>
+        
+        <label>نوع التوثيق والبطاقة الإشارية:</label>
+        <select id="type">
+            <option value="sahih">🟢 ثابت / صحيح</option>
+            <option value="daif">🟡 ضعيف / فيه مقال</option>
+            <option value="lam-yathbut">🔴 لم يثبت / مكذوب</option>
+        </select>
+
+        <label>نص الآية، الحديث أو الموعظة (بالتشكيل):</label>
+        <textarea id="text" rows="4" placeholder="أدخل النص هنا بالهمزات الصحيحة..."></textarea>
+
+        <label>الراوي أو القائل أو المفسر:</label>
+        <input type="text" id="author" placeholder="مثال: عمر بن الخطاب رضي الله عنه">
+
+        <label>المصدر أو المخرج العلمي أو ديوان الشعر:</label>
+        <input type="text" id="source" placeholder="مثال: صحيح البخاري / ديوان حسان">
+
+        <label>الشرح والبيان والتحليل التربوي:</label>
+        <textarea id="explain" rows="3" placeholder="اكتب الشرح المبسط والواضح هنا ليفهمه الزوار..."></textarea>
+
+        <button onclick="generateCode()">صناعة الكود الجاهز</button>
+
+        <label style="margin-top:20px; color:#c0392b;">👇 اضغط داخل المربع بالأسفل وانسخ الكود الناتج:</label>
+        <textarea id="output" class="result" readonly placeholder="سيظهر الكود البرمجي هنا بعد ضغط الزر الكود بالـخيار..."></textarea>
+        <p class="hint">ملاحظة: هذا الكود تأخذه وتلصقه في أسفل قسم الأحاديث أو المواعظ مباشرة فوق زر العودة.</p>
+    </div>
+
+    <script>
+        function generateCode() {
+            var type = document.getElementById('type').value;
+            var text = document.getElementById('text').value;
+            var author = document.getElementById('author').value;
+            var source = document.getElementById('source').value;
+            var explain = document.getElementById('explain').value;
+            
+            if(!text || !author || !source) {
+                alert("يرجى ملء الخانات الأساسية أولاً لتوليد الكود بشكل صحيح.");
+                return;
+            }
+
+            var badgeText = "🟢 ثَابِتٌ / صَحِيحٌ";
+            var borderColor = "#27ae60";
+            if(type == "daif") { badgeText = "🟡 ضَعِيفٌ / فِيهِ مَقَالٌ"; borderColor = "#f1c40f"; }
+            if(type == "lam-yathbut") { badgeText = "🔴 لَمْ يَثْبُتْ / مَكْذُوبٌ"; borderColor = "#e74c3c"; }
+
+            var code = `        <!-- بطاقة جديدة مضافة بواسطة المولد -->\n` +
+                       `        <div class="card ${type}" style="margin-top: 20px; border-right: 5px solid ${borderColor}; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: right; direction: rtl;">\n` +
+                       `            <span class="badge" style="display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: bold; border-radius: 4px; color: ${type=='daif'?'#333':'white'}; background-color: ${borderColor}; margin-bottom: 10px;">${badgeText}</span>\n` +
+                       `            <div class="text-content" style="color: #1e3d2f; font-size: 18px; text-align: center; margin: 15px 0; font-weight: bold; line-height: 1.6;">"${text}"</div>\n` +
+                       `            <div class="source" style="font-size: 13px; color: #555; background: #f9f9f9; padding: 10px; border-radius: 4px; line-height: 1.8;">\n` +
+                       `                • <b>القائل/الراوي:</b> ${author}.<br>\n` +
+                       `                • <b>المصدر:</b> ${source}.<br>\n` +
+                       `                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">\n` +
+                       `                • <b>الشرح والبيان:</b> ${explain}\n` +
+                       `            </div>\n` +
+                       `        </div>\n`;
+            
+            document.getElementById('output').value = code;
+            alert("تم توليد الكود بنجاح! اضغط داخل المربع الرمادي في الأسفل وانسخه بالكامل.");
+        }
+    </script>
+</body>
+  </html>
+          
