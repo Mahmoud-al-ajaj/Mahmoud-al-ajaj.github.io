@@ -27,7 +27,7 @@
     <label style="color: #1e3d2f;">✍️ اكتب هنا يدوياً (اسم المقال أو أي عنوان مخصص تريده):</label>
     <input type="text" id="manual-title" class="search-input" placeholder="اكتب هنا بيدك بحرية دون قيود...">
 
-    <!-- 2️⃣ قائمة درجة التوثيق الرسمية (مرتبة بالتدريج) -->
+    <!-- 2️⃣ قائمة درجة التوثيق الرسمية -->
     <label>📋 درجة توثيق النص الأثرية:</label>
     <select id="trust-status">
         <option value="ثابت / صحيح" selected>🟢 ثابت / صحيح</option>
@@ -35,11 +35,11 @@
         <option value="لم يثبت / مكذوب">🔴 لم يثبت / مكذوب</option>
     </select>
 
-    <!-- 3️⃣ قائمة نوع المحتوى (منسقة بالتدريج وبدوائر ملونة جديدة تماماً ومختلفة) -->
+    <!-- 3️⃣ قائمة نوع المحتوى المحدثة بالكامل والمعدلة حسب طلبك الدقيق -->
     <label>📚 نوع المحتوى والبطاقة الإشارية:</label>
     <select id="content-type">
-        <option value="موعظة أو أثر سلفي" selected>🟤 موعظة أو أثر سلفي</option>
-        <option value="مقال">🔵 مقال مفرغ</option>
+        <option value="موعظة" selected>🟤 موعظة</option>
+        <option value="أثر">🔵 أثر</option>
         <option value="بيت شعر أو قصيدة">🟣 بيت شعر أو قصيدة شعرية</option>
         <option value="آية قرآنية">⚪ آية قرآنية كريمة</option>
         <option value="حديث شريف">⚫ حديث نبوي شريف</option>
@@ -69,7 +69,7 @@
 
 <script>
 function generateCode() {
-    // جلب البيانات من كافة الحقول المحدثة
+    // جلب البيانات من كافة الحقول
     const manualTitle = document.getElementById('manual-title').value.trim();
     const trustStatus = document.getElementById('trust-status').value;
     const contentType = document.getElementById('content-type').value;
@@ -78,9 +78,9 @@ function generateCode() {
     const source = document.getElementById('source').value.trim();
     const explain = document.getElementById('explain').value.trim();
 
-    // اختيار رمز الدائرة لنوع المحتوى بناءً على اختيارك بالتدريج
+    // اختيار رمز الدائرة لنوع المحتوى بالتدريج والتعديل الجديد
     let contentCircle = "🟤";
-    if (contentType === "مقال") contentCircle = "🔵";
+    if (contentType === "أثر") contentCircle = "🔵";
     if (contentType === "بيت شعر أو قصيدة") contentCircle = "🟣";
     if (contentType === "آية قرآنية") contentCircle = "⚪";
     if (contentType === "حديث شريف") contentCircle = "⚫";
@@ -93,12 +93,12 @@ function generateCode() {
     // طبخ وتجهيز النص النهائي الذي سيظهر في الكود
     let finalClassification = `${contentCircle} ${contentType} | ${trustCircle} ${trustStatus}`;
     
-    // إذا كنت قد كتبت شيئاً بيدك في المحرك العلوي، سنقوم بدمجه فوراً ليكون له الأولوية
+    // دمج المدخل اليدوي من مربع البحث العلوي إن وجد بحرية كاملة
     if (manualTitle !== "") {
         finalClassification = `✏️ عنوان مخصص: ${manualTitle} | ${finalClassification}`;
     }
 
-    // هنا يتم طبخ قالب كود الـ HTML الجاهز تماماً والذي ينسخه المستخدم لموقعك
+    // قالب بطاقة الـ HTML النهائي الصافي والمنظم المتوافق مع موقعك
     const finalHTMLResult = `<!-- بداية بطاقة كنز السلف المطبوخة -->
 <div class="salaf-card" style="border: 1px solid #1e3d2f; padding: 18px; margin: 12px 0; border-radius: 8px; font-family: sans-serif; direction: rtl; text-align: right; background-color: #fff;">
     <div style="font-weight: bold; margin-bottom: 10px; color: #333; font-size: 14px;">${finalClassification}</div>
@@ -110,7 +110,7 @@ function generateCode() {
 </div>
 <!-- نهاية بطاقة كنز السلف المطبوخة -->`;
 
-    // ضخ النتيجة داخل المربع الأسفل للنسخ المباشر
+    // ضخ النتيجة النهائية داخل صندوق المخرجات
     document.getElementById('output').value = finalHTMLResult;
 }
 </script>
