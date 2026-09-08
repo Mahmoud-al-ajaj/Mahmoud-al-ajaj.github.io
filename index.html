@@ -9,13 +9,15 @@
     <link rel="icon" type="image/x-icon" href="https://github.com">
     <link rel="apple-touch-icon" href="https://github.com">
 
+    <!-- استدعاء المكتبة العالمية لإظهار أيقونات التواصل الاجتماعي الفخمة الملونة -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; margin: 0; padding: 0; }
         header { background-color: #1e3d2f; color: white; text-align: center; padding: 35px 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
         p.subtitle { margin: 10px 0 0 0; font-size: 15px; color: #a3c2b2; font-weight: 500; }
         
-        /* شريط الأزرار الفخم المنسق للبدء من اليمين والتمرير باللمس */
         nav { 
             display: flex; 
             justify-content: flex-start; 
@@ -47,12 +49,37 @@
         .welcome-card h2 { color: #1e3d2f; margin-top: 0; font-size: 22px; }
         .welcome-card p { font-size: 16px; line-height: 1.8; color: #555; }
         
-        /* تنسيق دليل الأقسام والشرح السفلي المضاف */
         .section-title { font-size: 18px; color: #1e3d2f; font-weight: bold; margin: 30px 0 15px 0; border-bottom: 2px solid #2c5e43; padding-bottom: 5px; text-align: right; }
         .explain-box { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; border-right: 4px solid #2c5e43; box-shadow: 0 2px 5px rgba(0,0,0,0.02); text-align: right; }
         .explain-box h3 { margin: 0 0 8px 0; font-size: 16px; color: #1e3d2f; }
         .explain-box p { margin: 0; font-size: 14px; color: #555; line-height: 1.6; }
         
+        /* تنسيق شريط أيقونات التواصل الاجتماعي الدائري الملون والمنظم بالأسفل */
+        .social-section { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); text-align: center; margin-top: 30px; }
+        .social-section p { font-size: 15px; font-weight: bold; color: #1e3d2f; margin-bottom: 15px; }
+        .social-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .social-icon { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%; 
+            color: white; 
+            text-decoration: none; 
+            font-size: 20px; 
+            transition: 0.3s ease; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .social-icon:hover { transform: translateY(-4px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        
+        /* تلوين كل أيقونة باللون الرسمي المعتمد للشركة المذكورة */
+        .facebook { background-color: #1877f2; }
+        .youtube { background-color: #ff0000; }
+        .twitter { background-color: #1da1f2; }
+        .tiktok { background-color: #000000; }
+        .whatsapp { background-color: #25d366; }
+
         footer { text-align: center; padding: 20px; font-size: 13px; color: #888; margin-top: 20px; }
     </style>
 </head>
@@ -69,43 +96,48 @@
         <a href="hadith.html">الحديث الشريف</a>
         <a href="mowaed.html">المواعظ</a>
         <a href="poetry.html">الشعر والقصائد</a>
-        <a href="duaa.html">الدعاء ألمأثور</a>
     </nav>
 
     <div class="container">
         
-        <!-- بطاقة الترحيب الرئيسية الثابتة -->
         <div class="welcome-card">
             <h2>مرحباً بكم في كنز السلف ✨</h2>
-            <p>مكتبة رقمية منسقة تُعنى بجمع ونشر متون العلم النافع من آيات وتفاسير وأحاديث نبوية ومواعظ مأثورة وقصائد صدر الإسلام، مع تحري الأمانة العلمية والدقة الكاملة في بيان درجة صحة النصوص وأصل ثبوتها.</p>
+            <p>مكتبة رقمية منسقة تُعنى بجمع ونشر متون العلم النافع من آيات وتفاسير وأحاديث نبوية ومواعظ مأثورة وقصائد صدر الإسلام، مع تحري الأمانة العلمية والدقة الكاملة.</p>
         </div>
 
-        <!-- الشرح والدليل التفصيلي لمحتوى الأقسام بطلبك يا أبا عجاج -->
         <div class="section-title">📖 دليل ومحتويات أقسام الموسوعة:</div>
 
         <div class="explain-box">
             <h3>🕋 قسم القرآن الكريم:</h3>
-            <p>عند دخولك لهذا القسم، ستجد آيات الذكر الحكيم مسجلة ومحررة بالتشكيل الكامل، متبوعة مباشرة بشروحها وتفاسيرها الموسعة المعتمدة المستمدة من أمهات الكتب مثل تفسير الحافظ ابن كثير؛ لبيان معاني كلام الله جل وعلا دون اختصار.</p>
+            <p>آيات الذكر الحكيم بالتشكيل الكامل متبوعة بشروحها وتفاسيرها المعتمدة من تفسير الحافظ ابن كثير لبيان معاني كلام الله جل وعلا دون اختصار.</p>
         </div>
 
         <div class="explain-box">
             <h3>🟢 قسم الحديث الشريف:</h3>
-            <p>يحتوي هذا القسم على متن السنة النبوية المطهرة وشروحها، مع تمييز دقيق للأحاديث يوضح درجتها العلمية سنداً ومتناً؛ حيث تظهر الأحاديث الثابتة الصحيحة بالإشارة الخضراء، بينما تفرد الأحاديث الضعيفة بالإشارة الصفراء لبيان مقالها تحرياً للأمانة العلمية.</p>
+            <p>متن السنة النبوية المطهرة وشروحها، مع تمييز دقيق للأحاديث يوضح درجتها العلمية؛ حيث تظهر الأحاديث الثابتة الصحيحة بالإشارة الخضراء، والضعيفة بالإشارة الصفراء تحرياً للأمانة العلمية.</p>
         </div>
 
         <div class="explain-box">
             <h3>📜 قسم المواعظ والرقائق:</h3>
-            <p>يجمع لك هذا القسم نفائس الحكم وبليغ المقالات المنقولة والراسخة عن الصحابة الكرام والتابعين الأعلام وعموم السلف الصالح، لتقدم للقارئ مواعظ تربوية تهذب النفس وتوقظ القلوب مع عزو كل قول إلى مصدره التاريخي الثابت.</p>
+            <p>نفائس الحكم وبليغ المقالات المأثورة عن الصحابة الكرام والتابعين وعموم السلف الصالح، لتقدم للقارئ مواعظ تربوية تهذب النفس وتوقظ القلوب مع عزو كل قول إلى مصدره الثابت.</p>
         </div>
 
         <div class="explain-box">
             <h3>✒️ قسم الشعر والقصائد:</h3>
-            <p>ديوان أدبي منسق يضم أجمل الأبيات والمنظومات الفصيحة المأثورة في الزهد والمدح، وخاصة قصائد شعراء صدر الإسلام والثابتة تاريخياً في دواوين الأدب، لبيان فصاحة اللسان العربي وحفظ المأثور الأدبي.</p>
+            <p>ديوان أدبي يضم أجمل الأبيات والمنظومات الفصيحة المأثورة في الزهد والمدح، وخاصة قصائد شعراء صدر الإسلام والثابتة تاريخياً في دواوين الأدب لبيان فصاحة اللسان العربي.</p>
         </div>
 
-        <div class="explain-box">
-            <h3>📿 قِسْمُ الأَدْعِيَةِ النَّبَوِيَّةِ المَأْثُورَةِ:</h3>
-            <p>موسوعة مستقلة تجمع الأدعية النبوية والقرآنية الثابتة والمستجابة، ليلهج بها لسان الذاكرين، مع بيان فضل كل دعاء وشرح مراميه ومعانيه لزيادة التدبر واليقين عند السؤال والتضرع.</p>
+        <!-- شريط أيقونات التواصل الاجتماعي التفاعلية المضاف بناءً على طلبك يا أبا عجاج -->
+        <div class="social-section">
+            <p>🔗 تابعنا وتواصل معنا عبر حساباتنا الرسمية:</p>
+            <div class="social-links">
+                <!-- استبدل الرابط المكتوب بداخل href="#" برابط حسابك الحقيقي لكل موقع -->
+                <a href="https://facebook.com" target="_blank" class="social-icon facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com" target="_blank" class="social-icon youtube" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-icon twitter" title="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="social-icon tiktok" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me" target="_blank" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
 
         <footer>
