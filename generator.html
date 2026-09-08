@@ -23,29 +23,31 @@
     <h2>🛠️ صانع كود البطاقات لـ كنز السلف</h2>
     <p style="text-align:center; font-size:13px; color:#666; margin-bottom:20px;">اكتب النص بيدك هنا ليصنع لك الكود تلقائياً</p>
 
-    <!-- 1️⃣ المربع الحر العلوي (مثل محرك البحث) لتكتب فيه الاسم بيدك بحرية كاملة -->
-    <label style="color: #1e3d2f;">✍️ اكتب هنا يدوياً (مثلاً: مواعظ الشيخ تركي أو أي عنوان مخصص):</label>
-    <input type="text" id="manual-title" class="search-input" placeholder="اكتب العنوان هنا بيدك بحرية...">
+    <!-- 1️⃣ المربع الحر العلوي -->
+    <label style="color: #1e3d2f;">✍️ اكتب هنا يدوياً (اكتب أي عنوان أو أيقونة بيدك هنا):</label>
+    <input type="text" id="manual-title" class="search-input" placeholder="مثال: 📜 مواعظ للبنعلي">
 
-    <!-- 2️⃣ قائمة درجة التوثيق (الدوائر التي تتحكم بلون البطاقة بالكامل) -->
+    <!-- 2️⃣ قائمة درجة التوثيق (مع إضافة خيار فارغ) -->
     <label>📋 درجة توثيق النص الأثرية واللون:</label>
     <select id="trust-status">
-        <option value="ثابت / صحيح" selected>🟢 ثابت / صحيح - (إطار أخضر)</option>
-        <option value="ضعيف / فيه مقال">🟡 ضعيف / فيه مقال - (إطار أصفر)</option>
-        <option value="لم يثبت / مكذوب">🔴 لم يثبت / مكذوب - (إطار أحمر)</option>
+        <option value="ثابت / صحيح" selected>🟢 ثابت / صحيح - (أخضر)</option>
+        <option value="ضعيف / فيه مقال">🟡 ضعيف / فيه مقال - (أصفر)</option>
+        <option value="لم يثبت / مكذوب">🔴 لم يثبت / مكذوب - (أحمر)</option>
+        <option value="empty">⚪ خيار فارغ (لا يظهر شيء)</option>
     </select>
 
-    <!-- 3️⃣ قائمة نوع المحتوى المحدثة والمنظمة -->
-    <label>📚 نوع المحتوى والبطاقة الإشارية:</label>
+    <!-- 3️⃣ قائمة نوع المحتوى (مع إضافة خيار فارغ) -->
+    <label>📚 نوع المحتوى والالبطاقة الإشارية:</label>
     <select id="content-type">
         <option value="موعظة" selected>🟤 موعظة</option>
         <option value="أثر">🔵 أثر</option>
         <option value="بيت شعر أو قصيدة">🟣 بيت شعر أو قصيدة شعرية</option>
         <option value="آية قرآنية">⚪ آية قرآنية كريمة</option>
         <option value="حديث شريف">⚫ حديث نبوي شريف</option>
+        <option value="empty">⚪ خيار فارغ (لا يظهر شيء)</option>
     </select>
 
-    <!-- 4️⃣ الحقول الأساسية لإدخال البيانات والنصوص المعروضة بالبطاقة -->
+    <!-- 4️⃣ الحقول الأساسية للبيانات -->
     <label>📝 نص الآية، الحديث أو الموعظة (بالتشكيل):</label>
     <textarea id="text" rows="4" placeholder="أدخل النص هنا بالهمزات الصحيحة..."></textarea>
 
@@ -61,7 +63,7 @@
     <!-- زر التوليد الذكي -->
     <button onclick="generateCode()">صناعة الكود الجاهز ✨</button>
 
-    <!-- المربع المخصص لنسخ الكود البرمجي الناتج -->
+    <!-- مخرجات الكود للنسخ -->
     <label style="margin-top:20px; color:#c0392b;">👇 اضغط داخل المربع بالأسفل وانسخ الكود الناتج:</label>
     <textarea id="output" class="result" readonly placeholder="سيظهر الكود البرمجي هنا بعد ضغط زر صناعة الكود..."></textarea>
     <p class="hint">ملاحظة: هذا الكود تأخذه وتلصقه في أسفل قسم الأحاديث أو المواعظ مباشرة فوق زر العودة.</p>
@@ -69,7 +71,7 @@
 
 <script>
 function generateCode() {
-    // جلب قيم المدخلات من الحقول
+    // جلب قيم المدخلات
     const manualTitle = document.getElementById('manual-title').value.trim();
     const trustStatus = document.getElementById('trust-status').value;
     const contentType = document.getElementById('content-type').value;
@@ -78,51 +80,61 @@ function generateCode() {
     const source = document.getElementById('source').value.trim();
     const explain = document.getElementById('explain').value.trim();
 
-    // إعداد أيقونات تصنيف المحتوى
+    // إعداد ألوان البطاقة والصندوق بناءً على اختيارك التلقائي داير ما يدورها
+    let mainColor = "#1e3d2f";   // أخضر افتراضي
+    let headerBg = "#1e3d2f";    // خلفية العنوان تطابق لون الاختيار تماماً
+    
+    let trustCircle = "🟢";
     let contentCircle = "🟤";
+
+    // تغيير الألوان داير مدارها حسب درجة التوثيق ليتطابق الصندوق مع الإطار
+    if (trustStatus.includes("ضعيف")) {
+        mainColor = "#f39c12";   // أصفر
+        headerBg = "#f39c12";
+        trustCircle = "🟡";
+    } else if (trustStatus.includes("لم يثبت")) {
+        mainColor = "#c0392b";   // أحمر
+        headerBg = "#c0392b";
+        trustCircle = "🔴";
+    }
+
+    // إعداد رموز تصنيف المحتوى
     if (contentType === "أثر") contentCircle = "🔵";
     if (contentType === "بيت شعر أو قصيدة") contentCircle = "🟣";
     if (contentType === "آية قرآنية") contentCircle = "⚪";
     if (contentType === "حديث شريف") contentCircle = "⚫";
 
-    // تلوين ذكي للبطاقة داير ما يدورها بالكامل بناءً على الدائرة المختارة في التوثيق
-    let mainColor = "#1e3d2f";   // أخضر افتراضي للخيار 🟢
-    let headerBg = "#e67e22";    // الصندوق البرتقالي للعنوان العلوي كما في الصورة
-    let trustCircle = "🟢";
-
-    if (trustStatus.includes("ضعيف")) {
-        mainColor = "#f39c12";   // يتحول الإطار والخطوط للون الأصفر التلقائي 🟡
-        headerBg = "#f1c40f";    // يتحول الصندوق العلوي للأصفر المتناسق
-        trustCircle = "🟡";
-    } else if (trustStatus.includes("لم يثبت")) {
-        mainColor = "#c0392b";   // يتحول الإطار والخطوط للون الأحمر التلقائي 🔴
-        headerBg = "#e74c3c";    // يتحول الصندوق العلوي للأحمر المتناسق
-        trustCircle = "🔴";
+    // بناء سطر التصنيف بذكاء (لو أحدهما فارغ أو كلاهما فارغ لا يظهران)
+    let classificationHeader = "";
+    if (contentType !== "empty" && trustStatus !== "empty") {
+        classificationHeader = `<div style="font-size: 12px; color: #777; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 6px;">${contentCircle} التصنيف: ${contentType} &nbsp;|&nbsp; ${trustCircle} التوثيق: ${trustStatus}</div>`;
+    } else if (contentType !== "empty") {
+        classificationHeader = `<div style="font-size: 12px; color: #777; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 6px;">${contentCircle} التصنيف: ${contentType}</div>`;
+    } else if (trustStatus !== "empty") {
+        classificationHeader = `<div style="font-size: 12px; color: #777; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 6px;">${trustCircle} التوثيق: ${trustStatus}</div>`;
     }
 
-    // تحديد عنوان الصندوق العلوي (إذا كتبته بيدك يأخذه فوراً، وإذا تركته فارغاً يكتب نوع المحتوى تلقائياً)
+    // صياغة عنوان الصندوق (تم إزالة الإيموجي البرمجي 📜 لكي تعتمد فقط على ما تكتبه أنت بيدك)
     let cardTitle = manualTitle !== "" ? manualTitle : `من ${contentType} السلف`;
 
-    // طبخ قالب بطاقة الـ HTML المتكامل والمنسق مثل صورتك تماماً وبدون أي تراكم
-    const finalHTMLResult = `<!-- بداية بطاقة كنز السلف التلقائية المطورة الشاملة -->
-<div class="salaf-card" style="border: 2px solid ${mainColor}; padding: 20px; margin: 15px 0; border-radius: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; direction: rtl; text-align: right; background-color: #fff; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+    // طبخ كود الـ HTML المتناسق والخالي من التكرار والزيادات
+    const finalHTMLResult = `<!-- بداية بطاقة كنز السلف المطبوخة والمحدثة بالكامل -->
+<div class="salaf-card" style="border: 2px solid ${mainColor}; padding: 20px; margin: 15px 0; border-radius: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; direction: rtl; text-align: right; background-color: #fff; position: relative;">
     
-    <!-- الصندوق العلوي الذي يحمل العنوان المكتوب يدوياً ويتلون بذكاء -->
-    <div style="display: inline-block; background-color: ${headerBg}; color: white; padding: 6px 16px; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        📜 ${cardTitle}
+    <!-- الصندوق العلوي يطابق لون اختيارك داير مدارها وبدون تكرار أيقونات من عندي -->
+    <div style="display: inline-block; background-color: ${headerBg}; color: white; padding: 6px 16px; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 15px;">
+        ${cardTitle}
     </div>
 
-    <!-- سطر معلومات التصنيف والتوثيق المنسق الهادئ -->
-    <div style="font-size: 12px; color: #777; margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 6px;">
-        ${contentCircle} التصنيف: ${contentType} &nbsp;|&nbsp; ${trustCircle} التوثيق: ${trustStatus}
-    </div>
+    <!-- السطر الإشاري المخفي تلقائياً عند اختيار الخيارات الفارغة -->
+    ${classificationHeader}
 
-    <!-- نص الموعظة أو الأثر مكبر ومعزول تماماً لمنع التداخل والخراب البصري -->
+    <!-- متن النص الأساسي -->
     <div style="font-size: 19px; color: #2c3e50; font-weight: bold; line-height: 1.8; margin: 15px 0; text-align: center; padding: 0 10px;">
         "${text}"
     </div>
 
-    <!-- بيانات القائل والمصدر منسقة داخل إطار جانبي ملون بنفس لون الدائرة -->
+    <!-- بيانات القائل والمصدر منسقة على شكل نقاط داخل إطار ملون متناسق -->
     <div style="background-color: #fafafa; padding: 12px; border-radius: 6px; margin-top: 15px; border-right: 3px solid ${mainColor};">
         <ul style="list-style-type: square; margin: 0; padding-right: 20px; font-size: 14px; color: #333; line-height: 1.6;">
             <li><b>القائل:</b> ${author}</li>
@@ -130,15 +142,15 @@ function generateCode() {
         </ul>
     </div>
 
-    <!-- الشرح والتحليل التربوي المنسق والمستقل في أسفل البطاقة -->
+    <!-- الشرح التربوي -->
     <div style="margin-top: 15px; font-size: 14px; color: #555; line-height: 1.6; padding-top: 10px; border-top: 1px solid #eee;">
         ${explain}
     </div>
 
 </div>
-<!-- نهاية بطاقة كنز السلف التلقائية المطورة الشاملة -->`;
+<!-- نهاية بطاقة كنز السلف المطبوخة والمحدثة بالكامل -->`;
 
-    // ضخ الكود المطبوخ داخل صندوق المخرجات للنسخ الفوري والمباشر
+    // ضخ الكود في صندوق المخرجات
     document.getElementById('output').value = finalHTMLResult;
 }
 </script>
