@@ -9,17 +9,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="./Images/favicon.ico">
     <link rel="apple-touch-icon" href="./Images/favicon.ico">
     
-    <!-- إظهار الرسمة والشعارات الرسمية بداخل الدوائر -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fcfcfc; color: #333; margin: 0; padding: 0; }
         header { background-color: #123524; color: white; text-align: center; padding: 40px 20px; }
         header h1 { margin: 0; font-size: 2.2rem; font-weight: bold; }
         header .subtitle { margin: 10px 0 0 0; font-size: 1.1rem; color: #a3b899; }
         
-        nav { background-color: #1c4d35; display: flex; justify-content: center; gap: 20px; padding: 15px; flex-wrap: wrap; }
-        nav a { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; transition: color 0.3s; }
+        /* إعادة القائمة لتتحرك بالإصبع يمين وشمال بسلاسة كما كانت في الأصل */
+        nav { 
+            background-color: #1c4d35; 
+            display: flex; 
+            justify-content: flex-start; 
+            gap: 25px; 
+            padding: 15px 20px; 
+            overflow-x: auto; 
+            white-space: nowrap; 
+            -webkit-overflow-scrolling: touch;
+        }
+        nav::-webkit-scrollbar { display: none; } /* إخفاء شريط التمرير المشوه */
+        nav a { color: white; text-decoration: none; font-size: 1.05rem; font-weight: 500; transition: color 0.3s; display: inline-block; }
         nav a:hover { color: #a3b899; }
         
         .container { max-width: 600px; margin: 30px auto; padding: 0 20px; }
@@ -30,39 +38,11 @@
         
         .section-title { font-size: 1.2rem; font-weight: bold; color: #123524; margin: 40px 0 20px 0; border-bottom: 2px solid #123524; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         
-        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-right: 5px solid #123524; transition: transform 0.3s; }
-        .card:hover { transform: translateY(-2px); }
+        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-right: 5px solid #123524; }
         .card-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: #123524; }
         .card-text { color: #555; line-height: 1.8; font-size: 0.95rem; }
         
-        .social-section { background: white; border-radius: 12px; padding: 25px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-top: 40px; }
-        .social-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 20px; color: #123524; }
-        
-        .social-icons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
-        
-        .social-icons .icon { 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 45px; 
-            height: 45px; 
-            border-radius: 50%; 
-            color: white; 
-            text-decoration: none; 
-            font-size: 20px; 
-            transition: 0.3s ease; 
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
-        }
-        .social-icons .icon:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        
-        /* تلوين كل أيقونة باللون الرسمي المعتمد للشركة المذكورة */
-        .facebook { background-color: #1877f2; }
-        .instagram { background-color: #e1306c; }
-        .twitter { background-color: #000000; } 
-        .tiktok { background-color: #000000; }
-        .whatsapp { background-color: #25d366; }
-        
-        footer { text-align: center; padding: 20px; font-size: 13px; color: #666; margin-top: 20px; border-top: 1px solid #eee; }
+        footer { text-align: center; padding: 20px; font-size: 13px; color: #666; margin-top: 40px; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
@@ -97,16 +77,28 @@
         <div class="card-text">آيات الذكر الحكيم بالتشكيل الكامل متبوعة بشروحها وتفاسيرها المعتمدة من تفسير الحافظ ابن كثير لبيان معاني كلام الله جل وعلا دون اختصار.</div>
     </div>
 
-    <!-- قسم تواصل معنا الجاهز بالروابط والشعارات الرسمية -->
-    <div class="social-section">
-        <div class="social-title">🔗 تابعنا وتواصل معنا عبر حساباتنا الرسمية:</div>
-        <div class="social-icons">
-            <a href="https://wa.me" class="icon whatsapp" target="_blank" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.tiktok.com/@mahmoud_al_ajaj_3?_r=1&_t=ZS-99ZB5l60Kpg" class="icon tiktok" target="_blank" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://x.com/Mahmoud_Al_ajaj" class="icon twitter" target="_blank" title="إكس / تويتر"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/mahmoud_al_ajaj2?stkn=MTZwcHUybjZ4end4eQ==" class="icon instagram" target="_blank" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.facebook.com/share/1GLf2A4j8s/" class="icon facebook" target="_blank" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
-        </div>
+    <!-- قسم الحديث الشريف -->
+    <div class="card" style="border-right-color: #2ecc71;">
+        <div class="card-title">🟢 قسم الحديث الشريف:</div>
+        <div class="card-text">متن السنة النبوية المطهرة وشروحها، مع تمييز دقيق للأحاديث يوضح درجتها العلمية؛ حيث تظهر الأحاديث الثابتة الصحيحة بالإشارة الخضراء، والضعيفة بالإشارة الصفراء تحرياً للأمانة العلمية.</div>
+    </div>
+
+    <!-- قسم المواعظ والرقائق -->
+    <div class="card" style="border-right-color: #f39c12;">
+        <div class="card-title">📜 قسم المواعظ والرقائق:</div>
+        <div class="card-text">نفائس الحكم وبليغ المقالات المأثورة عن الصحابة الكرام والتابعين وعموم السلف الصالح، لتقدم للقارئ مواعظ تربوية تهذب النفس وتوقظ القلوب مع عزو كل قول إلى مصدره الثابت.</div>
+    </div>
+
+    <!-- قسم الشعر والقصائد -->
+    <div class="card" style="border-right-color: #16a085;">
+        <div class="card-title">✒️ قسم الشعر والقصائد:</div>
+        <div class="card-text">ديوان أدبي يضم أجمل الأبيات والمنظومات الفصيحة المأثورة في الزهد والمدح، وخاصة قصائد شعراء صدر الإسلام والثابتة تاريخياً في دواوين الأدب لبيان فصاحة اللسان العربي.</div>
+    </div>
+
+    <!-- قسم الدعاء المأثور -->
+    <div class="card" style="border-right-color: #2980b9;">
+        <div class="card-title">🤲 قسم الدعاء المأثور:</div>
+        <div class="card-text">مجموعة مباركة من الأدعية النبوية الثابتة والأذكار المأثورة عن النبي صلى الله عليه وسلم، ليتزود منها المسلم في يومه وليلته متضرعاً وخاشعاً لرب العالمين.</div>
     </div>
 
     <footer>
@@ -117,3 +109,4 @@
 
 </body>
 </html>
+
