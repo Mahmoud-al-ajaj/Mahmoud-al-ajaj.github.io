@@ -14,9 +14,34 @@
         header { background-color: #1e3d2f; color: white; text-align: center; padding: 35px 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
         p.subtitle { margin: 10px 0 0 0; font-size: 15px; color: #a3c2b2; font-weight: 500; }
-        nav { display: flex; justify-content: center; background-color: #2c5e43; padding: 12px; overflow-x: auto; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
-        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 5px; font-size: 15px; font-weight: bold; white-space: nowrap; border-radius: 4px; transition: 0.3s; }
+        
+        /* شريط مصلح ومثبت للبدء من اليمين تماماً مع الحفاظ على الحجم الفخم والتمرير */
+        nav { 
+            display: flex; 
+            justify-content: flex-start; /* يضمن بدء الأزرار من اليمين دائماً */
+            flex-direction: row; /* يحافظ على الترتيب العربي الأفقي */
+            background-color: #2c5e43; 
+            padding: 12px; 
+            overflow-x: auto; 
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch; 
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav::-webkit-scrollbar { display: none; } 
+        
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 20px; 
+            margin: 0 5px; 
+            font-size: 15px; /* الحجم الكبير الواضح كما طلبت */
+            font-weight: bold; 
+            white-space: nowrap; 
+            border-radius: 4px; 
+            transition: 0.3s; 
+        }
         nav a:hover { background-color: #1e3d2f; }
+        
         .container { max-width: 600px; margin: 30px auto; padding: 15px; }
         .welcome-card { background: white; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-top: 4px solid #1e3d2f; text-align: center; }
         .welcome-card h2 { color: #1e3d2f; margin-top: 0; font-size: 22px; }
@@ -37,7 +62,7 @@
 
     <nav>
         <a href="index.html">الرئيسية</a>
-        <a href="tafsir.html">التفسير</a>
+        <a href="tafsir.html">القرآن الكريم</a>
         <a href="hadith.html">الحديث الشريف</a>
         <a href="mowaed.html">المواعظ</a>
         <a href="poetry.html">الشعر والقصائد</a>
@@ -55,8 +80,8 @@
         <!-- دليل تصفح الأقسام المبسط -->
         <div class="features">
             <div class="feature-box">
-                <h3>📖 القرآن والتفسير</h3>
-                <p>تصفح الآيات العظيمة مع شروحها وتفاسيرها المستمدة من أمهات الكتب المعتمدة.</p>
+                <h3>📖 القرآن الكريم وتفسيره</h3>
+                <p>تصفح الآيات العظيمة مسجلة ومحققة مع شروحها وتفاسيرها المعتمدة المستمدة من أمهات الكتب مباشرة.</p>
             </div>
             <div class="feature-box">
                 <h3>🟢 السنة النبوية والحديث</h3>
