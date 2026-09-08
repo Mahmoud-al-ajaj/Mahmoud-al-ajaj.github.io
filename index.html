@@ -6,60 +6,42 @@
     <title>موقع كنز السلف - الموسوعة الإسلامية الموثقة</title>
     
     <!-- أيقونة وشعار الموقع لمحركات البحث -->
-    <link rel="icon" type="image/x-icon" href="https://github.com">
-    <link rel="apple-touch-icon" href="https://github.com">
-
-    <!-- السطر السحري المسؤول عن إظهار الرسمة والشعارات الرسمية بداخل الدوائر -->
+    <link rel="shortcut icon" type="image/x-icon" href="./Images/favicon.ico">
+    <link rel="apple-touch-icon" href="./Images/favicon.ico">
+    
+    <!-- إظهار الرسمة والشعارات الرسمية بداخل الدوائر -->
     <link rel="stylesheet" href="https://cloudflare.com">
-
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; color: #333; margin: 0; padding: 0; }
-        header { background-color: #1e3d2f; color: white; text-align: center; padding: 35px 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
-        p.subtitle { margin: 10px 0 0 0; font-size: 15px; color: #a3c2b2; font-weight: 500; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fcfcfc; color: #333; margin: 0; padding: 0; }
+        header { background-color: #123524; color: white; text-align: center; padding: 40px 20px; }
+        header h1 { margin: 0; font-size: 2.2rem; font-weight: bold; }
+        header .subtitle { margin: 10px 0 0 0; font-size: 1.1rem; color: #a3b899; }
         
-        nav { 
-            display: flex; 
-            justify-content: flex-start; 
-            flex-direction: row; 
-            background-color: #2c5e43; 
-            padding: 12px; 
-            overflow-x: auto; 
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch; 
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-        nav::-webkit-scrollbar { display: none; } 
+        nav { background-color: #1c4d35; display: flex; justify-content: center; gap: 20px; padding: 15px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #a3b899; }
         
-        nav a { 
-            color: white; 
-            text-decoration: none; 
-            padding: 10px 20px; 
-            margin: 0 5px; 
-            font-size: 15px; 
-            font-weight: bold; 
-            white-space: nowrap; 
-            border-radius: 4px; 
-            transition: 0.3s; 
-        }
-        nav a:hover { background-color: #1e3d2f; }
+        .container { max-width: 600px; margin: 30px auto; padding: 0 20px; }
         
-        .container { max-width: 600px; margin: 30px auto; padding: 15px; }
-        .welcome-card { background: white; padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-top: 4px solid #1e3d2f; text-align: center; }
-        .welcome-card h2 { color: #1e3d2f; margin-top: 0; font-size: 22px; }
-        .welcome-card p { font-size: 16px; line-height: 1.8; color: #555; }
+        .welcome-card { background: white; border-radius: 15px; padding: 30px 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .welcome-card h2 { font-size: 1.5rem; color: #123524; margin-top: 0; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .welcome-card p { color: #666; line-height: 1.8; font-size: 1rem; margin: 0; }
         
-        .section-title { font-size: 18px; color: #1e3d2f; font-weight: bold; margin: 30px 0 15px 0; border-bottom: 2px solid #2c5e43; padding-bottom: 5px; text-align: right; }
-        .explain-box { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; border-right: 4px solid #2c5e43; box-shadow: 0 2px 5px rgba(0,0,0,0.02); text-align: right; }
-        .explain-box h3 { margin: 0 0 8px 0; font-size: 16px; color: #1e3d2f; }
-        .explain-box p { margin: 0; font-size: 14px; color: #555; line-height: 1.6; }
+        .section-title { font-size: 1.2rem; font-weight: bold; color: #123524; margin: 40px 0 20px 0; border-bottom: 2px solid #123524; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         
-        /* تنسيق شريط أيقونات التواصل الاجتماعي الدائري الملون والمنظم بالأسفل */
-        .social-section { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); text-align: center; margin-top: 30px; }
-        .social-section p { font-size: 15px; font-weight: bold; color: #1e3d2f; margin-bottom: 15px; }
-        .social-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .social-icon { 
-            display: flex; 
+        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-right: 5px solid #123524; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-2px); }
+        .card-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: #123524; }
+        .card-text { color: #555; line-height: 1.8; font-size: 0.95rem; }
+        
+        .social-section { background: white; border-radius: 12px; padding: 25px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-top: 40px; }
+        .social-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 20px; color: #123524; }
+        
+        .social-icons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+        
+        .social-icons .icon { 
+            display: inline-flex; 
             align-items: center; 
             justify-content: center; 
             width: 45px; 
@@ -69,87 +51,69 @@
             text-decoration: none; 
             font-size: 20px; 
             transition: 0.3s ease; 
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
         }
-        .social-icon:hover { transform: translateY(-4px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .social-icons .icon:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         
         /* تلوين كل أيقونة باللون الرسمي المعتمد للشركة المذكورة */
         .facebook { background-color: #1877f2; }
         .instagram { background-color: #e1306c; }
-        .twitter { background-color: #000000; } /* لون إكس المعتمد */
+        .twitter { background-color: #000000; } 
         .tiktok { background-color: #000000; }
         .whatsapp { background-color: #25d366; }
-
-        footer { text-align: center; padding: 20px; font-size: 13px; color: #888; margin-top: 20px; }
-</style>
+        
+        footer { text-align: center; padding: 20px; font-size: 13px; color: #666; margin-top: 20px; border-top: 1px solid #eee; }
     </style>
-<link rel="stylesheet" href="https://cloudflare.com">
-</head>
-    
 </head>
 <body>
 
-    <header>
-        <h1>موقع كنز السلف</h1>
-        <p class="subtitle">الموسوعة الإسلامية والأدبية الموثقة</p>
-    </header>
+<header>
+    <h1>موقع كنز السلف</h1>
+    <p class="subtitle">الموسوعة الإسلامية والأدبية الموثقة</p>
+</header>
 
-    <nav>
-        <a href="index.html">الرئيسية</a>
-        <a href="tafsir.html">القرآن الكريم</a>
-        <a href="hadith.html">الحديث الشريف</a>
-        <a href="mowaed.html">المواعظ</a>
-        <a href="poetry.html">الشعر والقصائد</a>
-        <a href="duaa.html">الدعاء المأثور</a>
-    </nav>
+<nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="tafsir.html">القرآن الكريم</a>
+    <a href="hadith.html">الحديث الشريف</a>
+    <a href="mowaed.html">المواعظ</a>
+    <a href="poetry.html">الشعر والقصائد</a>
+    <a href="duaa.html">الدعاء المأثور</a>
+</nav>
 
-    <div class="container">
-        
-        <!-- بطاقة الترحيب الرئيسية -->
-        <div class="welcome-card">
-            <h2>مرحباً بكم في كنز السلف ✨</h2>
-            <p>مكتبة رقمية منسقة تُعنى بجمع ونشر متون العلم النافع من آيات وتفاسير وأحاديث نبوية ومواعظ مأثورة وقصائد صدر الإسلام، مع تحري الأمانة العلمية والدقة الكاملة.</p>
-        </div>
+<div class="container">
 
-        <div class="section-title">📖 دليل ومحتويات أقسام الموسوعة:</div>
-
-        <div class="explain-box">
-            <h3>🕋 قسم القرآن الكريم:</h3>
-            <p>آيات الذكر الحكيم بالتشكيل الكامل متبوعة بشروحها وتفاسيرها المعتمدة من تفسير الحافظ ابن كثير لبيان معاني كلام الله جل وعلا دون اختصار.</p>
-        </div>
-
-        <div class="explain-box">
-            <h3>🟢 قسم الحديث الشريف:</h3>
-            <p>متن السنة النبوية المطهرة وشروحها، مع تمييز دقيق للأحاديث يوضح درجتها العلمية؛ حيث تظهر الأحاديث الثابتة الصحيحة بالإشارة الخضراء، والضعيفة بالإشارة الصفراء تحرياً للأمانة العلمية.</p>
-        </div>
-
-        <div class="explain-box">
-            <h3>📜 قسم المواعظ والرقائق:</h3>
-            <p>نفائس الحكم وبليغ المقالات المأثورة عن الصحابة الكرام والتابعين وعموم السلف الصالح، لتقدم للقارئ مواعظ تربوية تهذب النفس وتوقظ القلوب مع عزو كل قول إلى مصدره الثابت.</p>
-        </div>
-
-        <div class="explain-box">
-            <h3>✒️ قسم الشعر والقصائد:</h3>
-            <p>ديوان أدبي يضم أجمل الأبيات والمنظومات الفصيحة المأثورة في الزهد والمدح، وخاصة قصائد شعراء صدر الإسلام والثابتة تاريخياً في دواوين الأدب لبيان فصاحة اللسان العربي.</p>
-        </div>
-
-        <!-- شريط أيقونات التواصل الاجتماعي المربوطة بحساباتك الشخصية الحقيقية يا أبا عجاج -->
-        <div class="social-section">
-            <p>🔗 تابعنا وتواصل معنا عبر حساباتنا الرسمية:</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/share/1DWF2RLoyX/" target="_blank" class="social-icon facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com" target="_blank" class="social-icon instagram" title="انستغرام"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com/Mahmoud_Al_ajaj" target="_blank" class="social-icon twitter" title="تويتر"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.tiktok.com/@mahmoud_al_ajaj_3?_r=1&_t=ZS-99Z7pjCP3lF" target="_blank" class="social-icon tiktok" title="تيك توك"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me" target="_blank" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-
-        <footer>
-            جميع الحقوق محفوظة لموقع كنز السلف © ٢٠٢٦
-        </footer>
-
+    <!-- بطاقة الترحيب الرئيسية -->
+    <div class="welcome-card">
+        <h2>مرحباً بكم في كنز السلف ✨</h2>
+        <p>مكتبة رقمية منسقة تُعنى بجمع ونشر متون العلم النافع من آيات وتفاسير وأحاديث نبوية ومواعظ مأثورة وقصائد صدر الإسلام، مع تحري الأمانة العلمية والدقة الكاملة.</p>
     </div>
+
+    <div class="section-title">📖 دليل ومحتويات أقسام الموسوعة:</div>
+
+    <!-- قسم القرآن الكريم -->
+    <div class="card" style="border-right-color: #123524;">
+        <div class="card-title">🕋 قسم القرآن الكريم:</div>
+        <div class="card-text">آيات الذكر الحكيم بالتشكيل الكامل متبوعة بشروحها وتفاسيرها المعتمدة من تفسير الحافظ ابن كثير لبيان معاني كلام الله جل وعلا دون اختصار.</div>
+    </div>
+
+    <!-- قسم تواصل معنا الجاهز بالروابط والشعارات الرسمية -->
+    <div class="social-section">
+        <div class="social-title">🔗 تابعنا وتواصل معنا عبر حساباتنا الرسمية:</div>
+        <div class="social-icons">
+            <a href="https://wa.me" class="icon whatsapp" target="_blank" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.tiktok.com/@mahmoud_al_ajaj_3?_r=1&_t=ZS-99ZB5l60Kpg" class="icon tiktok" target="_blank" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://x.com/Mahmoud_Al_ajaj" class="icon twitter" target="_blank" title="إكس / تويتر"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/mahmoud_al_ajaj2?stkn=MTZwcHUybjZ4end4eQ==" class="icon instagram" target="_blank" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1GLf2A4j8s/" class="icon facebook" target="_blank" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة لموقع كنز السلف © ٢٠٢٦
+    </footer>
+
+</div>
 
 </body>
 </html>
