@@ -8,12 +8,13 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; padding: 20px; direction: rtl; }
         .box { background: white; padding: 20px; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         h2 { color: #1e3d2f; text-align: center; margin-top: 0; }
-        label { display: block; margin: 12px 0 5px; font-weight: bold; color: #333; }
-        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
-        button { width: 100%; padding: 12px; background: #1e3d2f; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 15px; }
+        label { display: block; margin: 15px 0 5px; font-weight: bold; color: #333; }
+        input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; background-color: #fff; }
+        button { width: 100%; padding: 12px; background: #1e3d2f; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 20px; }
         button:hover { background: #2c5e43; }
         textarea.result { background: #f0f0f0; font-family: monospace; font-size: 13px; margin-top: 10px; }
         .hint { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
+        .search-input { border: 1.5px solid #1e3d2f; background-color: #fafafa; }
     </style>
 </head>
 <body>
@@ -22,112 +23,97 @@
     <h2>🛠️ صانع كود البطاقات لـ كنز السلف</h2>
     <p style="text-align:center; font-size:13px; color:#666; margin-bottom:20px;">اكتب النص بيدك هنا ليصنع لك الكود تلقائياً</p>
 
-    <!-- القائمة العلوية الشاملة المدمج بها نوع التوثيق ونوع المحتوى وخيار اليدوي -->
-    <label>نوع التوثيق والبطاقة الإشارية:</label>
-    <select id="type" onchange="checkCustomSelection()">
-        <optgroup label="🟢 ثابت / صحيح">
-            <option value="sahih-ayah" selected>🟢 ثابت / صحيح - 📖 آية قرآنية</option>
-            <option value="sahih-hadith">🟢 ثابت / صحيح - 💬 حديث شريف</option>
-            <option value="sahih-mawiza">🟢 ثابت / صحيح - 📜 موعظة أو أثر سلفي</option>
-            <option value="sahih-maqal">🟢 ثابت / صحيح - 📰 مقال (اسم المقال)</option>
-            <option value="sahih-sher">🟢 ثابت / صحيح - ✍️ بيت شعر أو قصيدة</option>
-        </optgroup>
-        <optgroup label="🟡 ضعيف / فيه مقال">
-            <option value="daif-hadith">🟡 ضعيف / فيه مقال - 💬 حديث</option>
-            <option value="daif-mawiza">🟡 ضعيف / فيه مقال - 📜 أثر أو موعظة</option>
-        </optgroup>
-        <optgroup label="🔴 لم يثبت / مكذوب">
-            <option value="lam-hadith">🔴 لم يثبت / مكذوب - 💬 حديث</option>
-        </optgroup>
-        <optgroup label="✏️ خيارات الكتابة اليدوية">
-            <option value="custom-sahih">🟢 ثابت / صحيح - (أكتب التصنيف بيدي) ✏️</option>
-            <option value="custom-daif">🟡 ضعيف / فيه مقال - (أكتب التصنيف بيدي) ✏️</option>
-            <option value="custom-lam">🔴 لم يثبت / مكذوب - (أكتب التصنيف بيدي) ✏️</option>
-        </optgroup>
+    <!-- 1️⃣ المربع الحر العلوي (مثل محرك البحث) لتكتب فيه أي اسم أو عنوان يدوي بحرية كاملة -->
+    <label style="color: #1e3d2f;">✍️ اكتب هنا يدوياً (اسم المقال أو أي عنوان مخصص تريده):</label>
+    <input type="text" id="manual-title" class="search-input" placeholder="اكتب هنا بيدك بحرية دون قيود...">
+
+    <!-- 2️⃣ قائمة درجة التوثيق الرسمية (مرتبة بالتدريج) -->
+    <label>📋 درجة توثيق النص الأثرية:</label>
+    <select id="trust-status">
+        <option value="ثابت / صحيح" selected>🟢 ثابت / صحيح</option>
+        <option value="ضعيف / فيه مقال">🟡 ضعيف / فيه مقال</option>
+        <option value="لم يثبت / مكذوب">🔴 لم يثبت / مكذوب</option>
     </select>
 
-    <!-- حقل الكتابة اليدوية الإضافي (يظهر تلقائياً لو اخترت كتابة التصنيف بيدك من القائمة فوق) -->
-    <div id="custom-input-group" style="display: none;">
-        <label style="color: #c0392b;">اكتب التصنيف أو اسم المقال/الزيادة بيدك هنا:</label>
-        <input type="text" id="custom-text-input" placeholder="مثال: خطبة جمعة، مقطع من كتاب، اسم المقال الحالي...">
-    </div>
+    <!-- 3️⃣ قائمة نوع المحتوى (منسقة بالتدريج وبدوائر ملونة جديدة تماماً ومختلفة) -->
+    <label>📚 نوع المحتوى والبطاقة الإشارية:</label>
+    <select id="content-type">
+        <option value="موعظة أو أثر سلفي" selected>🟤 موعظة أو أثر سلفي</option>
+        <option value="مقال">🔵 مقال مفرغ</option>
+        <option value="بيت شعر أو قصيدة">🟣 بيت شعر أو قصيدة شعرية</option>
+        <option value="آية قرآنية">⚪ آية قرآنية كريمة</option>
+        <option value="حديث شريف">⚫ حديث نبوي شريف</option>
+    </select>
 
-    <!-- بقية الحقول الأصلية للموقع دون أي تغيير برمي أو بصري -->
-    <label>نص الآية، الحديث أو الموعظة (بالتشكيل):</label>
+    <!-- 4️⃣ الحقول الأساسية للنص والبيانات -->
+    <label>📝 نص الآية، الحديث أو الموعظة (بالتشكيل):</label>
     <textarea id="text" rows="4" placeholder="أدخل النص هنا بالهمزات الصحيحة..."></textarea>
 
-    <label>الراوي أو القائل أو المفسر:</label>
+    <label>👤 الراوي أو القائل أو المفسر:</label>
     <input type="text" id="author" placeholder="مثال: عمر بن الخطاب رضي الله عنه">
 
-    <label>المصدر أو المخرج العلمي أو ديوان الشعر:</label>
+    <label>📖 المصدر أو المخرج العلمي أو ديوان الشعر:</label>
     <input type="text" id="source" placeholder="مثال: صحيح البخاري / ديوان حسان">
 
-    <label>الشرح والبيان والتحليل التربوي:</label>
+    <label>💡 الشرح والبيان والتحليل التربوي:</label>
     <textarea id="explain" rows="3" placeholder="اكتب الشرح المبسط والواضح هنا ليفهمه الزوار..."></textarea>
 
-    <button onclick="generateCode()">صناعة الكود الجاهز</button>
+    <!-- زر التوليد السحري -->
+    <button onclick="generateCode()">صناعة الكود الجاهز ✨</button>
 
+    <!-- مخرجات الكود للنسخ -->
     <label style="margin-top:20px; color:#c0392b;">👇 اضغط داخل المربع بالأسفل وانسخ الكود الناتج:</label>
-    <textarea id="output" class="result" readonly placeholder="سيظهر الكود البرمجي هنا بعد ضغط الزر الكود... بالخيار"></textarea>
+    <textarea id="output" class="result" readonly placeholder="سيظهر الكود البرمجي هنا بعد ضغط زر صناعة الكود..."></textarea>
     <p class="hint">ملاحظة: هذا الكود تأخذه وتلصقه في أسفل قسم الأحاديث أو المواعظ مباشرة فوق زر العودة.</p>
 </div>
 
 <script>
-// دالة مراقبة الاختيار لإظهار حقل الكتابة اليدوية عند الحاجة
-function checkCustomSelection() {
-    const typeSelect = document.getElementById('type').value;
-    const customGroup = document.getElementById('custom-input-group');
-    
-    // إذا كان الاختيار يحتوي على مقال أو يبدأ بـ custom يظهر حقل الكتابة اليدوية
-    if (typeSelect.startsWith('custom') || typeSelect === 'sahih-maqal') {
-        customGroup.style.display = 'block';
-    } else {
-        customGroup.style.display = 'none';
-    }
-}
-
-// دالة توليد الأكواد الجاهزة (تطبخ البيانات وتخرج الكود في المربع الأسفل)
 function generateCode() {
-    const typeValue = document.getElementById('type').value;
+    // جلب البيانات من كافة الحقول المحدثة
+    const manualTitle = document.getElementById('manual-title').value.trim();
+    const trustStatus = document.getElementById('trust-status').value;
+    const contentType = document.getElementById('content-type').value;
     const text = document.getElementById('text').value.trim();
     const author = document.getElementById('author').value.trim();
     const source = document.getElementById('source').value.trim();
     const explain = document.getElementById('explain').value.trim();
-    const customText = document.getElementById('custom-text-input').value.trim();
 
-    // تحديد النص الوصفي للبطاقة بناءً على الاختيار
-    let classification = "";
-    let statusColor = "🟢";
+    // اختيار رمز الدائرة لنوع المحتوى بناءً على اختيارك بالتدريج
+    let contentCircle = "🟤";
+    if (contentType === "مقال") contentCircle = "🔵";
+    if (contentType === "بيت شعر أو قصيدة") contentCircle = "🟣";
+    if (contentType === "آية قرآنية") contentCircle = "⚪";
+    if (contentType === "حديث شريف") contentCircle = "⚫";
 
-    if (typeValue === 'sahih-ayah') { classification = "آية قرآنية (ثابت / صحيح)"; }
-    else if (typeValue === 'sahih-hadith') { classification = "حديث شريف (ثابت / صحيح)"; }
-    else if (typeValue === 'sahih-mawiza') { classification = "موعظة أو أثر سلفي (ثابت / صحيح)"; }
-    else if (typeValue === 'sahih-maqal') { classification = `مقال: ${customText || 'بدون عنوان'}`; }
-    else if (typeValue === 'sahih-sher') { classification = "شعر أو قصيدة (ثابت / صحيح)"; }
-    else if (typeValue === 'daif-hadith') { classification = "حديث (ضعيف / فيه مقال)"; statusColor = "🟡"; }
-    else if (typeValue === 'daif-mawiza') { classification = "أثر أو موعظة (ضعيف / فيه مقال)"; statusColor = "🟡"; }
-    else if (typeValue === 'lam-hadith') { classification = "حديث (لم يثبت / مكذوب)"; statusColor = "🔴"; }
-    else if (typeValue === 'custom-sahih') { classification = `${customText || 'محتوى مخصص'} (ثابت / صحيح)`; }
-    else if (typeValue === 'custom-daif') { classification = `${customText || 'محتوى مخصص'} (ضعيف / فيه مقال)`; statusColor = "🟡"; }
-    else if (typeValue === 'custom-lam') { classification = `${customText || 'محتوى مخصص'} (لم يثبت / مكذوب)`; statusColor = "🔴"; }
+    // اختيار رمز الدائرة لدرجة التوثيق
+    let trustCircle = "🟢";
+    if (trustStatus.includes("ضعيف")) trustCircle = "🟡";
+    if (trustStatus.includes("لم يثبت")) trustCircle = "🔴";
 
-    // هنا يتم طبخ وتوليد قالب كود الـ HTML النهائي الذي ينسخه المستخدم
-    const finalHTMLResult = `<!-- بداية بطاقة كنز السلف -->
-<div class="salaf-card" style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px; font-family: sans-serif; direction: rtl; text-align: right;">
-    <div style="font-weight: bold; margin-bottom: 8px;">${statusColor} التصنيف: ${classification}</div>
-    <blockquote style="font-size: 16px; color: #1e3d2f; margin: 10px 0; font-weight: 500;">"${text}"</blockquote>
-    <div style="font-size: 14px; color: #555;"><b>القائل/الراوي:</b> ${author}</div>
-    <div style="font-size: 14px; color: #555;"><b>المصدر:</b> ${source}</div>
+    // طبخ وتجهيز النص النهائي الذي سيظهر في الكود
+    let finalClassification = `${contentCircle} ${contentType} | ${trustCircle} ${trustStatus}`;
+    
+    // إذا كنت قد كتبت شيئاً بيدك في المحرك العلوي، سنقوم بدمجه فوراً ليكون له الأولوية
+    if (manualTitle !== "") {
+        finalClassification = `✏️ عنوان مخصص: ${manualTitle} | ${finalClassification}`;
+    }
+
+    // هنا يتم طبخ قالب كود الـ HTML الجاهز تماماً والذي ينسخه المستخدم لموقعك
+    const finalHTMLResult = `<!-- بداية بطاقة كنز السلف المطبوخة -->
+<div class="salaf-card" style="border: 1px solid #1e3d2f; padding: 18px; margin: 12px 0; border-radius: 8px; font-family: sans-serif; direction: rtl; text-align: right; background-color: #fff;">
+    <div style="font-weight: bold; margin-bottom: 10px; color: #333; font-size: 14px;">${finalClassification}</div>
+    <blockquote style="font-size: 16px; color: #1e3d2f; margin: 12px 0; font-weight: 500; line-height: 1.6;">"${text}"</blockquote>
+    <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><b>القائل/الراوي:</b> ${author}</div>
+    <div style="font-size: 13px; color: #555; margin-bottom: 8px;"><b>المصدر:</b> ${source}</div>
     <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-    <div style="font-size: 14px; color: #666; font-style: italic;"><b>الشرح التربوي:</b> ${explain}</div>
+    <div style="font-size: 13px; color: #666; font-style: italic; line-height: 1.5;"><b>الشرح التربوي:</b> ${explain}</div>
 </div>
-<!-- نهاية بطاقة كنز السلف -->`;
+<!-- نهاية بطاقة كنز السلف المطبوخة -->`;
 
-    // ضخ الكود المطبوخ داخل مربع النص الأسفل ليقوم المستخدم بنسخه
+    // ضخ النتيجة داخل المربع الأسفل للنسخ المباشر
     document.getElementById('output').value = finalHTMLResult;
 }
 </script>
 
 </body>
 </html>
-
